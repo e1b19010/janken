@@ -1,19 +1,24 @@
 package oit.is.z0493.kaizi.janken.controller;
 
+import java.security.Principal;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import oit.is.z0493.kaizi.janken.model.Entry;
+
 @Controller
+@RequestMapping("/lec02")
 public class Lec02Controller {
 
-  @GetMapping("/sample")
-  public String sample(){
-    return "lec02.html";
-  }
+  @Autowired
+  private Entry room;
    /**
    *
    * @param name
@@ -35,7 +40,7 @@ public class Lec02Controller {
    * @return
    *
    */
-  @GetMapping("/lec02/{param1}")
+  @GetMapping("/janken/{param1}")
   public String janken(@PathVariable String param1,ModelMap model){
     String judge=""; //ememyはずっとグー
     String enemy="Gu";
@@ -56,6 +61,16 @@ public class Lec02Controller {
     model.addAttribute("judge",judge);
     model.addAttribute("enemy",enemy);
     model.addAttribute("me",me);
+    return "lec02.html";
+  }
+
+
+  @GetMapping("/room")
+  public String lec02_1(Principal prin,ModelMap model){
+    String loginUser = prin.getName();
+    this.room.addUser(loginUser);
+    model.addAttribute("room", this.room);
+
     return "lec02.html";
   }
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/schema/security">
 
 <head>
   <meta charset="utf-8">
@@ -7,14 +7,16 @@
 </head>
 
 <body>
+  <div><a href="/logout">ログアウト</a></div>
+
   <h1>Lec02 GET!</h1>
-  <div th:if="${yourname}">
-    Hi [[${yourname}]]
-  </div>
+  <h2>エントリー</h2>
+  <h3>ユーザ名：<div sec:authentication="name"></div>
+  </h3>
   <div>
-    <a href="/lec02/gu">グー</a>
-    <a href="/lec02/tyo">チョキ</a>
-    <a href="/lec02/pa">パー</a>
+    <a href="lec02/janken/gu">グー</a>
+    <a href="lec02/janken/tyo">チョキ</a>
+    <a href="lec02/janken/pa">パー</a>
   </div>
   <div th:if="${judge}">
     あなたの手:[[${me}]]<br>
