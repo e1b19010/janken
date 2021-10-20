@@ -19,6 +19,11 @@ public class Lec02Controller {
 
   @Autowired
   private Entry room;
+
+  @GetMapping("step1")
+  public String step1(){
+    return "lec02.html";
+  }
    /**
    *
    * @param name
@@ -26,7 +31,7 @@ public class Lec02Controller {
    * @return
    *
    */
-  @PostMapping("/nameform")
+  @PostMapping("nameform")
   public String Lec02
   (@RequestParam String name, ModelMap model) {
     String yourname=name;
@@ -64,8 +69,13 @@ public class Lec02Controller {
     return "lec02.html";
   }
 
+  /**
+   *  @param prin
+   *  @param model
+   *  @return
+   */
 
-  @GetMapping("/room")
+  @GetMapping("room")
   public String lec02_1(Principal prin,ModelMap model){
     String loginUser = prin.getName();
     this.room.addUser(loginUser);
